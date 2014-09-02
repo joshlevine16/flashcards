@@ -1,0 +1,52 @@
+<%= form_for @card, :html => { :class => "form-horizontal card" } do |f| %>
+
+    <% if @card.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @card.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :word, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :word, :class => 'form-control' %>
+    </div>
+    <%= error_span(@card[:word]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :definition, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :definition, :class => 'form-control' %>
+    </div>
+    <%= error_span(@card[:definition]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :pronunciation, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pronunciation, :class => 'form-control' %>
+    </div>
+    <%= error_span(@card[:pronunciation]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :image, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :image, :class => 'form-control' %>
+    </div>
+    <%= error_span(@card[:image]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            cards_path, :class => 'btn btn-default' %>
+
+<% end %>
