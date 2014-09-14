@@ -11,16 +11,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902015134) do
+ActiveRecord::Schema.define(version: 20140913175423) do
 
   create_table "cards", force: true do |t|
-    t.string   "word"
-    t.string   "definition"
+    t.string   "english_field"
+    t.string   "foreign_field"
     t.string   "pronunciation"
     t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "sections", force: true do |t|
+    t.integer  "teacher_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sections_students", id: false, force: true do |t|
+    t.integer "sections_students_id"
+    t.integer "part_id"
+  end
+
+  create_table "stats", force: true do |t|
+    t.integer  "set_id"
+    t.integer  "section_id"
+    t.integer  "card_id"
+    t.integer  "student_id"
+    t.float    "total_percent_correct"
+    t.float    "seven_day_moving_avg_percent_correct"
+    t.float    "english_prompt_percent_correct"
+    t.float    "foreign_prompt_percent_correct"
+    t.float    "audio_prompt_percent_correct"
+    t.float    "avg_latency"
+    t.integer  "largest_interval"
+    t.integer  "number_forgotten"
+    t.integer  "number_hard"
+    t.integer  "number_good"
+    t.integer  "number_easy"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "students", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "students", ["email"], name: "index_students_on_email", unique: true
+  add_index "students", ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
+
+  create_table "teachers", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
+  add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

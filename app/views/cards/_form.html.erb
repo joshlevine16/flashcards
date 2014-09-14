@@ -1,48 +1,33 @@
-<%= form_for @card, :html => { :class => "form-horizontal card" } do |f| %>
+<%= form_for(@card) do |f| %>
+  <% if @card.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h2>
 
-    <% if @card.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@card.errors.count, "error") %> prohibited this card from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @card.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
+      <ul>
+      <% @card.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
     </div>
   <% end %>
 
-  <div class="control-group">
-    <%= f.label :word, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :word, :class => 'form-control' %>
-    </div>
-    <%= error_span(@card[:word]) %>
+  <div class="field">
+    <%= f.label :english_field %><br>
+    <%= f.text_field :english_field %>
   </div>
-  <div class="control-group">
-    <%= f.label :definition, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :definition, :class => 'form-control' %>
-    </div>
-    <%= error_span(@card[:definition]) %>
+  <div class="field">
+    <%= f.label :foreign_field %><br>
+    <%= f.text_field :foreign_field %>
   </div>
-  <div class="control-group">
-    <%= f.label :pronunciation, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :pronunciation, :class => 'form-control' %>
-    </div>
-    <%= error_span(@card[:pronunciation]) %>
+  <div class="field">
+    <%= f.label :pronunciation %><br>
+    <%= f.text_field :pronunciation %>
   </div>
-  <div class="control-group">
-    <%= error_span(@card[:image]) %>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
   </div>
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            cards_path, :class => 'btn btn-default' %>
-
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>

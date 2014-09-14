@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  references: 
+  references: 
+  references: 
+  references: 
+  total_%_correct: 1.5
+  seven_day_moving_avg_%_correct: 1.5
+  english_prompt_%_correct: 1.5
+  foreign_prompt_%_correct: 1.5
+  audio_prompt_%_correct: 1.5
+  avg_latency: 1.5
+  largest_interval: 1
+  number_forgotten: 1
+  number_hard: 1
+  number_good: 1
+  number_easy: 1
+
+two:
+  references: 
+  references: 
+  references: 
+  references: 
+  total_%_correct: 1.5
+  seven_day_moving_avg_%_correct: 1.5
+  english_prompt_%_correct: 1.5
+  foreign_prompt_%_correct: 1.5
+  audio_prompt_%_correct: 1.5
+  avg_latency: 1.5
+  largest_interval: 1
+  number_forgotten: 1
+  number_hard: 1
+  number_good: 1
+  number_easy: 1

@@ -1,6 +1,5 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   # GET /cards
   # GET /cards.json
@@ -29,7 +28,6 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
-
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
@@ -71,6 +69,6 @@ class CardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def card_params
-      params.require(:card).permit(:word, :definition, :pronunciation, :image)
+      params.require(:card).permit(:english_field, :foreign_field, :pronunciation, :image)
     end
 end
