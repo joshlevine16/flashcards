@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Flashcards</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "http://ajax.microsoft.com/ajax/jquery/jquery-1.4.2.min.js" %>
+  <%= csrf_meta_tags %>
+  <script type="text/javascript">
+  		$(document).ready(function() {
+  			// Initialise Plugin
+  			var options = {
+  				additionalFilterTriggers: [$('#quickfind')]
+  			};
+  			$('#demotable').tableFilter(options);
+  		});
+  	</script>
+</head>
+<body>
+	<%= nav_bar :fixed => :top, :brand => "Tilt", :brand_link => cards_path do %>
+		<%= menu_group :pull => :right do %>
+            <%= menu_item "Feedback" %>
+            <%= menu_item "Logout", destroy_student_session_path,  method: :delete %>
+            <%= menu_item "Contact Us" %>
+            <%= menu_item "My Account", edit_student_registration_path %>
+        <% end %>
+     <% end %>
+	<div class="row">
+		<div class="col col-md-2">
+			<br>
+			<br>
+			<br>
+			<br>
+            <div class="panel panel-default">
+            	<div class="panel-body">
+		            <ul class="nav nav-stacked">
+		                <li>
+		                    <%= link_to "My Cards" %>
+		                </li>
+		                <li>
+		                    <%= link_to "My Classes" %>
+		                </li>
+		                <li>
+		                    <%= link_to "My Folders" %>
+		                </li>
+		                <li>
+		                    <%= link_to "Settings" %>
+		                </li>
+		                <li>
+		                    <%= link_to "Privicy Policy" %>
+		                </li>
+		                <li>
+		                    <%= link_to "Help" %>
+		                </li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col col-md-8">
+			<br>
+			<br>
+			<br> <%= bootstrap_flash %>
+			<br>
+			<ul class="nav nav-tabs nav-justified" role="tablist">
+			<li class="<%= 'active' if params[:controller] == 'students' && params[:action] == 'index'%>"><%= link_to "Tilt", students_index_path %></li>
+			<li class="<%= 'active' if params[:controller] == 'cards' %>"><%= link_to "Manage Cards", cards_path %></li>
+			<li class= "<%= 'active' if params[:controller] == 'students' && params[:action] == 'progress' %>"><%= link_to "Progress", students_progress_path %></li>
+			</ul>
+			<%= yield %>
+		</div>
+	</div>
+
+
+</body>
+</html>

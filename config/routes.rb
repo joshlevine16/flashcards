@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'students/index'
+
+  get 'students/manage_cards'
+
+  get 'students/progress'
+
   resources :cards
 
   devise_for :teachers
@@ -7,7 +13,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  #root 'cards#index'
+  root 'students#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140913175423) do
+ActiveRecord::Schema.define(version: 20140919001351) do
+
+  create_table "card_sets", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cards", force: true do |t|
     t.string   "english_field"
@@ -35,7 +41,7 @@ ActiveRecord::Schema.define(version: 20140913175423) do
   end
 
   create_table "stats", force: true do |t|
-    t.integer  "set_id"
+    t.integer  "card_set_id"
     t.integer  "section_id"
     t.integer  "card_id"
     t.integer  "student_id"

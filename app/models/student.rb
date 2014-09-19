@@ -4,4 +4,6 @@ class Student < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_and_belongs_to_many :sections
+  has_many :stats
+  has_many :cards, through: :stats
 end
