@@ -29,6 +29,9 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
+        if student_signed_in?
+          stat = Stat.create(card_id: @card.id, student_id: current_student.id)
+        end
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }
       else
