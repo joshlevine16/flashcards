@@ -28,6 +28,24 @@
   </tbody>
 </table>
 
+<table class="table table-striped table-hover table-bordered" id="demotable">
+  <thead>
+    <tr>
+      <th>Prompt</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todays_pairings.each do |pairing| %>
+      <tr>
+        <td><%= pairing.prompt %></td>
+        <td><%= pairing.answer %></td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+
 <br>
 
 <%= link_to 'New Card', new_card_path %>

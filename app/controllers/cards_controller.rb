@@ -5,7 +5,8 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards =  current_student.cards
+    @cards =  current_student.cards.uniq
+    @todays_pairings = current_student.todays_pairings 
   end
 
   # GET /cards/1
@@ -30,7 +31,7 @@ class CardsController < ApplicationController
     respond_to do |format|
       if @card.save
         if student_signed_in?
-          stat = Stat.create(card_id: @card.id, student_id: current_student.id)
+          @card.create_pairings(current_student)
         end
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render :show, status: :created, location: @card }

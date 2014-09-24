@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140919001351) do
+ActiveRecord::Schema.define(version: 20140924184616) do
 
   create_table "card_sets", force: true do |t|
     t.string   "name"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(version: 20140919001351) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "pairings", force: true do |t|
+    t.integer  "card_id"
+    t.string   "prompt"
+    t.string   "answer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pairings", ["card_id"], name: "index_pairings_on_card_id"
 
   create_table "sections", force: true do |t|
     t.integer  "teacher_id"
@@ -45,19 +55,18 @@ ActiveRecord::Schema.define(version: 20140919001351) do
     t.integer  "section_id"
     t.integer  "card_id"
     t.integer  "student_id"
-    t.float    "total_percent_correct"
-    t.float    "seven_day_moving_avg_percent_correct"
-    t.float    "english_prompt_percent_correct"
-    t.float    "foreign_prompt_percent_correct"
-    t.float    "audio_prompt_percent_correct"
-    t.float    "avg_latency"
-    t.integer  "largest_interval"
-    t.integer  "number_forgotten"
-    t.integer  "number_hard"
-    t.integer  "number_good"
-    t.integer  "number_easy"
+    t.float    "total_percent_correct",                default: 0.0
+    t.float    "seven_day_moving_avg_percent_correct", default: 0.0
+    t.float    "avg_latency",                          default: 1.0
+    t.integer  "largest_interval",                     default: 1
+    t.integer  "number_forgotten",                     default: 0
+    t.integer  "number_hard",                          default: 0
+    t.integer  "number_good",                          default: 0
+    t.integer  "number_easy",                          default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pairing_id"
+    t.integer  "interval",                             default: 0
   end
 
   create_table "students", force: true do |t|
