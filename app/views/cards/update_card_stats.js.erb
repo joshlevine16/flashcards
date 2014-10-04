@@ -1,0 +1,9 @@
+$("#prompt").replaceWith("<h1 class='text-center' id='prompt'><%= @pairing.prompt %></h1>");
+$("#answer").replaceWith("<h1 class='text-center' id='answer'><%= @pairing.answer %></h1>");
+$("#answer").hide();
+$("#rating").hide();
+$("#flip").show();
+$("#pairing_id").replaceWith("<input id='pairing_id' name='pairing_id' type='hidden' value='<%= @pairing.id %>'/>");
+$("#pairing_index").replaceWith("<input id='pairing_index' name='pairing_index' type='hidden' value='<%= @pairing_index %>'/>");
+
+          

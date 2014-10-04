@@ -7,28 +7,34 @@
     <tr>
       <th>English field</th>
       <th>Foreign field</th>
-      <th>Pronunciation</th>
-      <th>Image</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        <td><%= card.english_field %></td>
-        <td><%= card.foreign_field %></td>
-        <td><%= card.pronunciation %></td>
-        <td><%= card.image %></td>
-        <td><%= link_to 'Show', card %></td>
-        <td><%= link_to 'Edit', edit_card_path(card) %></td>
-        <td><%= link_to 'Destroy', card, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+  <tbody id="cards">
+    <%= render @cards %>
+    <tr>
+    <%= form_for(@card, remote: true) do |f| %>
+      <td>
+        <%= f.text_field :english_field %>
+      </td>
+      <td>
+        <%= f.text_field :foreign_field %>
+      </td>
+      <td>
+        <%= f.text_field :pronunciation %>
+      </td>
+      <td>
+        <%= f.text_field :image %>
+      </td>
+      <td>
+        <%= f.submit %>
+      </td>
     <% end %>
   </tbody>
 </table>
 
-<table class="table table-striped table-hover table-bordered" id="demotable">
+<table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
       <th>Prompt</th>
@@ -48,4 +54,37 @@
 
 <br>
 
-<%= link_to 'New Card', new_card_path %>
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Practice</button>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
+      <div class="modal-body"> 
+        <%= render @pairing %>
+      </div>
+      <div class="modal-footer">
+        <%= button_tag "Flip", class: "btn btn-primary", id: "flip" %>
+        <%= form_tag '/update_card_stats', remote: true, id: "rating"  do %>
+          <%= hidden_field_tag(:pairing_id, @pairing.id, id: "pairing_id") %>
+          <%= hidden_field_tag(:pairing_index, @pairing_index, id: "pairing_index") %>
+          <%= radio_button_tag(:response, "forgoten") %>
+          <%= label_tag(:response_forgot, "Forgot") %>
+          <%= radio_button_tag(:response, "hard") %>
+          <%= label_tag(:response_hard, "Hard") %>
+          <%= radio_button_tag(:response, "good") %>
+          <%= label_tag(:response_hard, "Good") %>
+          <%= radio_button_tag(:response, "easy") %>
+          <%= label_tag(:response_hard, "Easy") %>
+          <%= submit_tag("Submit", class: "btn btn-primary") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -6,7 +6,10 @@ class CardsController < ApplicationController
   # GET /cards.json
   def index
     @cards =  current_student.cards.uniq
-    @todays_pairings = current_student.todays_pairings 
+    @card = Card.new
+    @todays_pairings = current_student.todays_pairings
+    @pairing = @todays_pairings.first
+    @pairing_index = 1
   end
 
   # GET /cards/1
@@ -34,6 +37,7 @@ class CardsController < ApplicationController
           @card.create_pairings(current_student)
         end
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
+        format.js {}
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new }
@@ -65,6 +69,18 @@ class CardsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def update_card_stats
+    puts "PARAMS:"
+    response = "number_#{params["response"]}".to_sym
+    Stat.where(pairing_id: params[:pairing_id], student_id: current_student.id).first.increment!(response)
+    @pairing_index = params["pairing_index"].to_i + 1
+    @pairing = current_student.todays_pairings[@pairing_index]
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

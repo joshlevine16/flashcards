@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'pairings/forgot'
+
+  get 'pairings/hard'
+
+  get 'pairings/good'
+
+  get 'pairings/easy'
+
   get 'students/index'
 
   get 'students/manage_cards'
@@ -17,6 +25,8 @@ Rails.application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+
+  post 'update_card_stats' => 'cards#update_card_stats'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
