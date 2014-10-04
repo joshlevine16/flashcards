@@ -73,7 +73,7 @@
         <%= form_tag '/update_card_stats', remote: true, id: "rating"  do %>
           <%= hidden_field_tag(:pairing_id, @pairing.id, id: "pairing_id") %>
           <%= hidden_field_tag(:pairing_index, @pairing_index, id: "pairing_index") %>
-          <%= radio_button_tag(:response, "forgoten") %>
+          <%= radio_button_tag(:response, "forgotten") %>
           <%= label_tag(:response_forgot, "Forgot") %>
           <%= radio_button_tag(:response, "hard") %>
           <%= label_tag(:response_hard, "Hard") %>
