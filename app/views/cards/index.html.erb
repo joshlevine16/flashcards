@@ -16,19 +16,19 @@
     <tr>
     <%= form_for(@card, remote: true) do |f| %>
       <td>
-        <%= f.text_field :english_field %>
+        <%= f.text_field :english_field, class: "form-control", placeholder: "English field" %>
       </td>
       <td>
-        <%= f.text_field :foreign_field %>
+        <%= f.text_field :foreign_field, class: "form-control", placeholder: "Foreign field" %>
       </td>
       <td>
-        <%= f.text_field :pronunciation %>
+        <%= f.text_field :pronunciation, class: "form-control", placeholder: "Pronunciation" %>
       </td>
       <td>
-        <%= f.text_field :image %>
+        <%= f.text_field :image, class: "form-control", placeholder: "Image" %>
       </td>
       <td>
-        <%= f.submit %>
+        <%= button_tag "Create Card", class: "btn btn-default" %>
       </td>
     <% end %>
   </tbody>
@@ -54,9 +54,11 @@
 
 <br>
 
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Practice</button>
+<% if @pairing %>
+  <!-- Button trigger modal -->
+  <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Practice</button>
+
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -87,4 +89,5 @@
     </div>
   </div>
 </div>
+<% end %>
 
