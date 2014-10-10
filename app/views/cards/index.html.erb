@@ -13,24 +13,27 @@
 
   <tbody id="cards">
     <%= render @cards %>
+  </tbody>
+  <tbody>
     <tr>
-    <%= form_for(@card, remote: true) do |f| %>
-      <td>
-        <%= f.text_field :english_field, class: "form-control", placeholder: "English field" %>
-      </td>
-      <td>
-        <%= f.text_field :foreign_field, class: "form-control", placeholder: "Foreign field" %>
-      </td>
-      <td>
-        <%= f.text_field :pronunciation, class: "form-control", placeholder: "Pronunciation" %>
-      </td>
-      <td>
-        <%= f.text_field :image, class: "form-control", placeholder: "Image" %>
-      </td>
-      <td>
-        <%= button_tag "Create Card", class: "btn btn-default" %>
-      </td>
-    <% end %>
+      <%= form_for(@card, remote: true) do |f| %>
+        <td>
+          <%= f.text_field :english_field, class: "form-control", placeholder: "English field" %>
+        </td>
+        <td>
+          <%= f.text_field :foreign_field, class: "form-control", placeholder: "Foreign field" %>
+        </td>
+        <td>
+          <%= f.text_field :pronunciation, class: "form-control", placeholder: "Pronunciation" %>
+        </td>
+        <td>
+          <%= f.text_field :image, class: "form-control", placeholder: "Image" %>
+        </td>
+        <td>
+          <%= button_tag "Create Card", class: "btn btn-default" %>
+        </td>
+      <% end %>
+    </tr>
   </tbody>
 </table>
 
